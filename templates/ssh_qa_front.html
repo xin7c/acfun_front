@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>前端发布</title>
+    <link href="/static/css/bootstrap.min.css" rel="stylesheet">
+    <link href="/static/local.css" rel="stylesheet">
+    <script src="http://apps.bdimg.com/libs/jquery/1.11.1/jquery.min.js"></script>
+</head>
+<body>
+    <div class="text-primary">
+        <h2 id="title">前端发布</h2>
+    </div>
+    <div id="id_table">
+        <table id="table" class="table table-striped table-hover">
+{#            <caption>前端发布请戳我们</caption>#}
+            <thead>
+                <tr>
+                  <th>#</th>
+                  <th>项目名称</th>
+                  <th>=怼我=</th>
+                  <th>执行时间</th>
+                </tr>
+            </thead>
+            <tbody>
+                {% for i in tr %}
+                    <tr>
+                        <th scope="row" id="id_th_{{ i }}">{{ i }}</th>
+                        <td>Front {{ i }}</td>
+                        <td><input type="submit"  value="sh{{ i }}" name="sh{{ i }}" class="btn btn-sm btn-danger"/></td>
+                        <td>@now</td>
+                    </tr>
+                {% endfor %}
+            </tbody>
+        </table>
+    </div>
+    <div id="ssh_result">
+        <kbd>=*=执行结果=*=</kbd>
+    </div>
+
+<script>
+        $(document).ready(function(){
+            var h_th_1 = $('#id_th_1').offset().top;
+            var w_table = $("table").find("tr").width() + 30;
+            $('#ssh_result').offset({ top: h_th_1});
+            $('#ssh_result').offset({ left: w_table});
+
+            $.ajaxSetup({
+                 data: {csrfmiddlewaretoken: '{{ csrf_token }}' }
+            });
+            $('.btn-sm').click(function(){
+                var btn_text = $(this).attr("name");
+                console.log(btn_text);
+
+                $.ajax({
+                    url: "{% url 'ssh_qa_runshell' %}",
+                    type:"POST",
+                    crossDomain:true,
+                    xhrFields:{withCredentials:true},
+                    data: {"btn_text":btn_text},
+                    cache: false,
+{#                    dataType: "html"#}
+                    }).done(function(ajax_req){
+                        $('#ssh_result').html("<kbd>Action[" + btn_text + "]</kbd><br>" + ajax_req)
+
+                    });
+                });
+            });
+    </script>
+</body>
+</html>
