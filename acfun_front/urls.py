@@ -15,11 +15,12 @@ Including another URLconf
 """
 from django.conf.urls import url
 from django.contrib import admin
-from ssh_qa.views import index, ssh_qa, ssh_qa_runshell
+from ssh_qa.views import *
 
 urlpatterns = [
     url(r'^admin/', admin.site.urls),
     url(r'^$', index, name="index"),
     url(r'^ssh_qa/$', ssh_qa, name="ssh_qa"),
     url(r'^ssh_qa_runshell/$', ssh_qa_runshell, name="ssh_qa_runshell"),
+    url(r'^ssh_info/$', ssh_info, name="ssh_info"),
     ]
