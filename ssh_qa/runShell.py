@@ -8,11 +8,11 @@ import paramiko
 
 
 def ssh_qa_server(command):
-    '''ssh登陆测试服务器并执行shell命令'''
+    """ssh登陆测试服务器并执行shell命令"""
     ssh = paramiko.SSHClient()
     ssh.set_missing_host_key_policy(paramiko.AutoAddPolicy())
     try:
-        ssh.connect(hostname='192.168.71.101', port=22, username='root', password='MdxBlsntKb7')
+        ssh.connect(hostname='192.168.71.101', port=22, username='root', password='hostkeeper')
         stdin, stdout, stderr = ssh.exec_command(command)
         results = stdout.readlines()
         # print type(results)
