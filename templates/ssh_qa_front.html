@@ -6,8 +6,7 @@
     <link href="/static/css/bootstrap.min.css" rel="stylesheet">
     <link href="/static/local.css" rel="stylesheet">
     <script src="http://apps.bdimg.com/libs/jquery/1.11.1/jquery.min.js"></script>
-    <script language="JavaScript" src="/static/local.js">
-    </script>
+{#    <script language="JavaScript" src="/static/local.js"></script>#}
 </head>
 <body>
     <div class="text-primary">
@@ -40,37 +39,37 @@
         <kbd>=*=执行结果=*=</kbd>
     </div>
 
-{#<script>#}
-{#        $(document).ready(function(){#}
-{#            var h_th_1 = $('#id_tbody').offset().top;#}
-{#            var w_table = $("table").find("tr").width() + 30;#}
-{#            $('#ssh_result').offset({ top: h_th_1});#}
-{#            $('#ssh_result').offset({ left: w_table});#}
-{##}
-{#            $.ajaxSetup({#}
-{#                 data: {csrfmiddlewaretoken: '{{ csrf_token }}' }#}
-{#            });#}
-{#            $('.btn-sm').click(function(){#}
-{#                var btn_text = $(this).attr("name");#}
-{#                console.log(btn_text);#}
-{#                var c_time = new Date();#}
-{#                $('#ssh_result').html("<kbd>执行开始于[" + c_time.toLocaleString() + "]</kbd><br>");#}
-{#                $.ajax({#}
-{#                    url: "{% url 'ssh_qa_runshell' %}",#}
-{#                    type:"POST",#}
-{#                    crossDomain:true,#}
-{#                    xhrFields:{withCredentials:true},#}
-{#                    data: {"btn_text":btn_text},#}
-{#                    cache: false,#}
-{#                    dataType: "html"#}
-{#                    }).done(function(ajax_req){#}
-{#                        $('#ssh_result').append("<kbd>Action[" + btn_text + "]</kbd><br>" + ajax_req)}).fail(function(e){#}
-{#                       $('#ssh_result').html(e)#}
-{#                });#}
-{#                $('body,html').animate({ scrollTop: 0 }, 100);#}
-{##}
-{#                });#}
-{#            });#}
-{#    </script>#}
+<script>
+        $(document).ready(function(){
+            var h_th_1 = $('#id_tbody').offset().top;
+            var w_table = $("table").find("tr").width() + 30;
+            $('#ssh_result').offset({ top: h_th_1});
+            $('#ssh_result').offset({ left: w_table});
+
+            $.ajaxSetup({
+                 data: {csrfmiddlewaretoken: '{{ csrf_token }}' }
+            });
+            $('.btn-sm').click(function(){
+                var btn_text = $(this).attr("name");
+                console.log(btn_text);
+                var c_time = new Date();
+                $('#ssh_result').html("<kbd>执行开始于[" + c_time.toLocaleString() + "]</kbd><br>");
+                $.ajax({
+                    url: "{% url 'ssh_qa_runshell' %}",
+                    type:"POST",
+                    crossDomain:true,
+                    xhrFields:{withCredentials:true},
+                    data: {"btn_text":btn_text},
+                    cache: false,
+                    dataType: "html"
+                    }).done(function(ajax_req){
+                        $('#ssh_result').append("<kbd>Action[" + btn_text + "]</kbd><br>" + ajax_req)}).fail(function(e){
+                       $('#ssh_result').html(e)
+                });
+                $('body,html').animate({ scrollTop: 0 }, 100);
+
+                });
+            });
+    </script>
 </body>
 </html>
