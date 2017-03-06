@@ -10,6 +10,7 @@ def index(req):
 
 
 def req(req):
+
     print req.GET
     return HttpResponse(req.GET)
 
