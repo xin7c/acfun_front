@@ -51,7 +51,8 @@
             $('.btn-sm').click(function(){
                 var btn_text = $(this).attr("name");
                 console.log(btn_text);
-
+                var c_time = new Date();
+                $('#ssh_result').html("<kbd>执行开始于[" + c_time.toLocaleString() + "]</kbd><br>");
                 $.ajax({
                     url: "{% url 'ssh_qa_runshell' %}",
                     type:"POST",
@@ -61,9 +62,11 @@
                     cache: false,
 {#                    dataType: "html"#}
                     }).done(function(ajax_req){
-                        $('#ssh_result').html("<kbd>Action[" + btn_text + "]</kbd><br>" + ajax_req)
+                        $('#ssh_result').append("<kbd>Action[" + btn_text + "]</kbd><br>" + ajax_req)}).fail(function(e){
+                       $('#ssh_result').html(e)
+                });
+                $('body,html').animate({ scrollTop: 0 }, 100);
 
-                    });
                 });
             });
     </script>
