@@ -22,12 +22,12 @@
                   <th>执行时间</th>
                 </tr>
             </thead>
-            <tbody>
-                {% for i in tr %}
-                    <tr>
-                        <th scope="row" id="id_th_{{ i }}">{{ i }}</th>
-                        <td>Front {{ i }}</td>
-                        <td><input type="submit"  value="sh{{ i }}" name="sh{{ i }}" class="btn btn-sm btn-danger"/></td>
+            <tbody id="id_tbody">
+                {% for i,j in context_zip %}
+                    <tr >
+                        <th scope="row" >{{ i }}</th>
+                        <td>Front [{{ forloop.counter }}]-> {{ j }}</td>
+                        <td><input type="submit"  value={{ j }} name="{{ j }}" class="btn btn-sm btn-danger"/></td>
                         <td>@now</td>
                     </tr>
                 {% endfor %}
@@ -40,7 +40,7 @@
 
 <script>
         $(document).ready(function(){
-            var h_th_1 = $('#id_th_1').offset().top;
+            var h_th_1 = $('#id_tbody').offset().top;
             var w_table = $("table").find("tr").width() + 30;
             $('#ssh_result').offset({ top: h_th_1});
             $('#ssh_result').offset({ left: w_table});
