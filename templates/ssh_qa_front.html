@@ -69,7 +69,6 @@
             });
             {#打印日志按钮#}
             $('.btn-info').click(function(){
-                console.log("heiheihei");
                 var btn_text = $(this).attr("name");
                 $.ajax({
                     url: "{% url 'ssh_qa_logs' %}",
@@ -80,7 +79,10 @@
                     cache: false,
                     dataType: "html"
                     }).done(function(ajax_req){
-                        $('#ssh_front_result').html("<kbd>[" + btn_text + "]log</kbd><br>" + ajax_req)})
+                        $('#ssh_front_result').html("<kbd>[" + btn_text + "]log</kbd><br>" + ajax_req)}).fail(function(e){
+                       $('#ssh_front_result').html(e)
+                });
+                $('body,html').animate({ scrollTop: 0 }, 100);
             })
 
 
