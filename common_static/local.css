@@ -10,9 +10,7 @@
     width: 50%;
 }
 
-#ssh_result{
-    /*background-color: #2aabd2;*/
-    /*float: left;*/
-    width: 45%;
-    /*height: 50%;*/
+#ssh_front_result{
+    width: 50%;
 }
+

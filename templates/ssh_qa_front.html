@@ -20,37 +20,43 @@
             <thead>
                 <tr>
                   <th>#</th>
-                  <th>项目名称</th>
+{#                  <th>项目名称</th>#}
                   <th>=怼我=</th>
-                  <th>执行时间</th>
+                  <th>查看日志</th>
                 </tr>
             </thead>
             <tbody id="id_tbody">
                 {% for i,j in context_zip %}
                     <tr >
                         <th scope="row" >{{ i }}</th>
-                        <td>Front [{{ forloop.counter }}]-> {{ j }}</td>
+{#                        <td>Front [{{ forloop.counter }}]-> {{ j }}</td>#}
                         <td><input type="submit"  value={{ j }} name="{{ j }}" class="btn btn-sm btn-danger"/></td>
-                        <td>@now</td>
+                        <td><input type="submit"  value="{{ j }}.log" name="{{ j }}" class="btn btn-sm btn-info"/></td>
                     </tr>
                 {% endfor %}
             </tbody>
         </table>
     </div>
-    <div id="ssh_result">
-        <kbd>=*=执行结果=*=</kbd>
+
+    <div id="ssh_front_result">
+        <kbd>=*=执行结果=*=</kbd><br>
     </div>
+
+        <div id="ssh_front_logs">
+            <kbd>=*=执行日志=*=</kbd><br>
+        </div>
+
 
 <script>
         $(document).ready(function(){
             $.ajaxSetup({
                  data: {csrfmiddlewaretoken: '{{ csrf_token }}' }
             });
-            $('.btn-sm').click(function(){
+            {#执行脚本按钮#}
+            $('.btn-danger').click(function(){
                 var btn_text = $(this).attr("name");
                 console.log(btn_text);
                 var c_time = new Date();
-                $('#ssh_result').html("<kbd>执行开始于[" + c_time.toLocaleString() + "]</kbd><br>");
                 $.ajax({
                     url: "{% url 'ssh_qa_runshell' %}",
                     type:"POST",
@@ -60,11 +66,28 @@
                     cache: false,
                     dataType: "html"
                     }).done(function(ajax_req){
-                        $('#ssh_result').append("<kbd>Action[" + btn_text + "]</kbd><br>" + ajax_req)}).fail(function(e){
-                       $('#ssh_result').html(e)
+                        $('#ssh_front_result').html("<kbd>执行开始于[" + c_time.toLocaleString() + "]</kbd><br>" + "<kbd>Action[" + btn_text + "]</kbd><br>" + ajax_req)}).fail(function(e){
+                       $('#ssh_front_result').html(e)
                 });
                 $('body,html').animate({ scrollTop: 0 }, 100);
             });
+            {#打印日志按钮#}
+            $('.btn-info').click(function(){
+                console.log("heiheihei");
+                var btn_text = $(this).attr("name");
+                $.ajax({
+                    url: "{% url 'ssh_qa_logs' %}",
+                    type:"POST",
+                    crossDomain:true,
+                    xhrFields:{withCredentials:true},
+                    data: {"btn_text":btn_text},
+                    cache: false,
+                    dataType: "html"
+                    }).done(function(ajax_req){
+                        $('#ssh_front_result').html("<kbd>[" + btn_text + "]log</kbd><br>" + ajax_req)})
+            })
+
+
         });
     </script>
 </body>

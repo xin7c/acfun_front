@@ -1,7 +1,7 @@
 # coding=utf-8
 from django.shortcuts import render
 from django.http import HttpResponse
-from runShell import ssh_qa_server
+from runShell import ssh_qa_server, ssh_qa_printLogs
 from front_shell_list import front_shell_list
 
 
@@ -37,6 +37,14 @@ def ssh_qa_runshell(req):
     if req.method == "POST":
         btn_text = req.POST["btn_text"]
         results = ssh_qa_server(shell_path='/root/deploy/front/node-source/',
+                                shell_name=btn_text)
+        # print results
+        return HttpResponse(results)
+
+def ssh_qa_logs(req):
+    if req.method == "POST":
+        btn_text = req.POST["btn_text"]
+        results = ssh_qa_printLogs(shell_path='/root/deploy/front/node-source/',
                                 shell_name=btn_text)
         # print results
         return HttpResponse(results)

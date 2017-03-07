@@ -23,5 +23,6 @@ urlpatterns = [
     url(r'^req/$', req, name="req"),
     url(r'^ssh_qa/$', ssh_qa, name="ssh_qa"),
     url(r'^ssh_qa_runshell/$', ssh_qa_runshell, name="ssh_qa_runshell"),
+    url(r'^ssh_qa_logs/$', ssh_qa_logs, name="ssh_qa_logs"),
     url(r'^ssh_info/$', ssh_info, name="ssh_info"),
     ]

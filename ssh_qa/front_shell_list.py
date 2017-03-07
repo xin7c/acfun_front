@@ -6,6 +6,7 @@
 """
 
 front_shell_list = [
+    "1.sh",
     "acfun-cms-download.master.sh",
     "acfun-game.test2.sh",
     "acfun-midware.master.sh",
@@ -28,5 +29,5 @@ front_shell_list = [
     "acfun-game.master.sh",
     "acfun-live.test2.sh",
     "acfun-web.master.sh",
-    "1.sh",
+
 ]
