@@ -6,7 +6,7 @@
     <link href="/static/css/bootstrap.min.css" rel="stylesheet">
     <link href="/static/local.css" rel="stylesheet">
     <script src="http://apps.bdimg.com/libs/jquery/1.11.1/jquery.min.js"></script>
-{#    <script language="JavaScript" src="/static/local.js"></script>#}
+    <script language="JavaScript" src="/static/local.js"></script>
 </head>
 <body>
     <div class="text-primary">
@@ -41,11 +41,6 @@
 
 <script>
         $(document).ready(function(){
-            var h_th_1 = $('#id_tbody').offset().top;
-            var w_table = $("table").find("tr").width() + 30;
-            $('#ssh_result').offset({ top: h_th_1});
-            $('#ssh_result').offset({ left: w_table});
-
             $.ajaxSetup({
                  data: {csrfmiddlewaretoken: '{{ csrf_token }}' }
             });
@@ -67,9 +62,8 @@
                        $('#ssh_result').html(e)
                 });
                 $('body,html').animate({ scrollTop: 0 }, 100);
-
-                });
             });
+        });
     </script>
 </body>
 </html>

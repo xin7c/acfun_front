@@ -1,0 +1,18 @@
+#title{
+    float: none;
+    display: block;
+    margin-left: 20px;
+    margin-right: auto;
+}
+#id_table{
+    margin: 20px;
+    /*float: left;*/
+    width: 50%;
+}
+
+#ssh_result{
+    /*background-color: #2aabd2;*/
+    /*float: left;*/
+    width: 45%;
+    /*height: 50%;*/
+}
