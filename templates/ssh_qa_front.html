@@ -14,8 +14,8 @@
     <div class="text-primary">
         <h2 id="title">前端发布</h2>
     </div>
-    <div id="id_table">
-        <table id="table" class="table table-striped table-hover">
+    <div id="id_table" >
+        <table id="table" class="table table-striped table-hover" style="width: 800px">
 {#            <caption>前端发布请戳我们</caption>#}
             <thead>
                 <tr>
@@ -25,7 +25,7 @@
                   <th>查看日志</th>
                 </tr>
             </thead>
-            <tbody id="id_tbody">
+            <tbody id="id_tbody" >
                 {% for i,j in context_zip %}
                     <tr >
                         <th scope="row" >{{ i }}</th>
@@ -41,10 +41,6 @@
     <div id="ssh_front_result">
         <kbd>=*=执行结果=*=</kbd><br>
     </div>
-
-        <div id="ssh_front_logs">
-            <kbd>=*=执行日志=*=</kbd><br>
-        </div>
 
 
 <script>

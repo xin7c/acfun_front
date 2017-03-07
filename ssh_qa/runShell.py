@@ -41,7 +41,7 @@ def ssh_qa_printLogs(shell_path, shell_name):
     try:
         ssh.connect(hostname='192.168.60.226', port=22, username='root', password='acfun-ops')
         print "已连接...正在执行[%s]..." % str(shell_name)
-        stdin, stdout, stderr = ssh.exec_command("tail " + log_name)
+        stdin, stdout, stderr = ssh.exec_command("tail -n 50 " + log_name)
         results = stdout.readlines()
         results = ["<kbd>" + x + "<br>" + "</kbd>" for x in results]
         print results
