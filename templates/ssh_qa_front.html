@@ -1,4 +1,5 @@
 <!DOCTYPE html>
+{% load staticfiles %}
 <html lang="en">
 <head>
     <meta charset="UTF-8">
@@ -7,12 +8,12 @@
     <link href="/static/local.css" rel="stylesheet">
     <script src="http://apps.bdimg.com/libs/jquery/1.11.1/jquery.min.js"></script>
 {#    <script language="JavaScript" src="/static/local.js"></script>#}
-    {% load staticfiles %}
+{#    {% load staticfiles %}#}
     <script language="JavaScript" src={% static 'local.js' %}></script>
 </head>
 <body>
     <div class="text-primary">
-        <h2 id="title">前端发布</h2>
+        <h4 id="title">前端发布</h4>
     </div>
     <div id="id_table" >
         <table id="table" class="table table-striped table-hover" style="width: 800px">
