@@ -13,6 +13,7 @@ class MOBILE_API(models.Model):
     api_name = models.CharField(max_length=100, null=True)
     api_version = models.CharField(max_length=100, null=True)
     api_device = models.IntegerField(choices=device)
+    auto_time = models.DateTimeField(auto_now_add=True)
 
     def __str__(self):
         return self.api_name
