@@ -1,6 +1,7 @@
 from django.shortcuts import render
 from django.http import HttpResponse
 
+
 def api(req):
     addr = req.META['REMOTE_ADDR']
     context = {}
@@ -11,3 +12,11 @@ def api(req):
     print req.META['HTTP_USER_AGENT']
     print
     return response
+
+
+def login(req):
+    return HttpResponse("Login")
+
+
+def logout(req):
+    return HttpResponse("Logout")
