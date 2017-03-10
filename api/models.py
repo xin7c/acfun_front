@@ -21,3 +21,14 @@ class MOBILE_API(models.Model):
         verbose_name = '移动端API'
         verbose_name_plural = '移动端API'
         ordering = ['id']  # 按照哪个栏目排序
+
+@python_2_unicode_compatible
+class API_VERSION(models.Model):
+    api_version = models.CharField(max_length=100, null=True)
+
+    def __str__(self):
+        return self.api_version
+    class Meta:
+        verbose_name = 'api版本号'
+        verbose_name_plural = 'api版本号'
+        ordering = ['id']  # 按照哪个栏目排序

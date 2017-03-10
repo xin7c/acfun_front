@@ -27,6 +27,8 @@ urlpatterns = [
     url(r'^ssh_qa_logs/$', ssh_qa_logs, name="ssh_qa_logs"),
     url(r'^ssh_info/$', ssh_info, name="ssh_info"),
     url(r'^api/$', api, name="api"),
+    url(r'^api/r/$', api_r, name="api_r"),
     url(r'^api/login/$', login, name="login"),
     url(r'^api/logout/$', logout, name="logout"),
+
     ]
