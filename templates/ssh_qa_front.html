@@ -13,7 +13,7 @@
 </head>
 <body>
     <div class="text-primary">
-        <h4 id="title">前端发布</h4>
+        <button id="id_title" class="btn btn-primary">前端发布</button>
     </div>
     <div id="id_table" >
         <table id="table" class="table table-striped table-hover" style="width: 800px">
@@ -84,9 +84,10 @@
                        $('#ssh_front_result').html(e)
                 });
                 $('body,html').animate({ scrollTop: 0 }, 100);
-            })
-
-
+            });
+            $('#id_title').click(function(){
+                window.location.reload();
+            });
         });
     </script>
 </body>
