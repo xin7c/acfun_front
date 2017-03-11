@@ -85,7 +85,8 @@
                 });
                 $('body,html').animate({ scrollTop: 0 }, 100);
             });
-            $('#id_title').click(function(){
+            $('#id_title').click(function(event){
+                console.log(event.pageX);
                 window.location.reload();
             });
         });
