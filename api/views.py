@@ -1,12 +1,16 @@
+#coding:utf-8
 from django.shortcuts import render
 from django.http import HttpResponse
 from .models import API_VERSION
-
+from django.forms.models import model_to_dict
+# from django.core import serializers
+# import json
 
 def api(req):
     if req.method == "GET":
         addr = req.META['REMOTE_ADDR']
         HTTP_USER_AGENT = req.META['HTTP_USER_AGENT']
+        # get mysql
         apis = API_VERSION.objects.values()
         apis_list = [x["api_version"] for x in apis]
         last_version = max(apis_list)
@@ -26,7 +30,19 @@ def api(req):
 def api_r(req):
     if req.method == "POST":
         choice_api = req.POST["choice_api"]
-        return HttpResponse(choice_api)
+        print API_VERSION.objects.all()
+        r_api_version = API_VERSION.objects.get(api_version__exact="1.0.2")
+
+        # 第一种方法: serializers + json
+        # print json.loads(serializers.serialize("json", r_api_version))[0]["fields"]["api_version"]
+
+        # 第二种方法: model_to_dict
+        data = model_to_dict(r_api_version)["api_version"]
+        if data == choice_api:
+            return HttpResponse("[CheckSuccsess]" + choice_api)
+        else:
+            return HttpResponse("[NotMatch]" + choice_api)
+
 
 
 def login(req):
