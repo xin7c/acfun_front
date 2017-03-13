@@ -10,7 +10,7 @@
 </head>
 <body>
 <h1>API-ROOT</h1>
-<h3>阁下来自[{{ addr }}]</h3>
+<h3>阁下来自[<span id="id_addr">{{ addr }}</span>]</h3>
 <h5>浏览器信息: [{{ HTTP_USER_AGENT }}]</h5>
 选项个数: {{ apis|length }}<br>
 
@@ -31,7 +31,7 @@
                 被选中:<span id="id_span_selected"></span>
             </div>
         </div>
-        <input type="submit" value="提交">
+        <input type="submit" value="提交" class="btn btn-primary">
     </form>
 </div>
 

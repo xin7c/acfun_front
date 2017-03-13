@@ -13,4 +13,14 @@ $(document).ready(function(){
         console.log("select被改变:" + selectText);
         $("#id_span_selected").html(selectText);
     }
+    //addr hover效果
+    var id_addr = $("#id_addr");
+    id_addr.hover(
+        function(){
+            $(this).css("background-color","#66ffcc")
+        },
+        function(){
+            $(this).css("background-color","white");
+        });
+
 });
