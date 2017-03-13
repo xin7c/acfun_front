@@ -2,6 +2,7 @@ from django.shortcuts import render
 from django.http import HttpResponse
 from .models import API_VERSION
 
+
 def api(req):
     if req.method == "GET":
         addr = req.META['REMOTE_ADDR']

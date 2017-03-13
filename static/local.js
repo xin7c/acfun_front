@@ -12,5 +12,4 @@ $(document).ready(function(){
     $('#ssh_front_result').css({
         "width":body_width-w_table
     });
-
 });//JS end
