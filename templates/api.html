@@ -5,14 +5,16 @@
     <title>API-ROOT</title>
     <script src="http://apps.bdimg.com/libs/jquery/1.11.1/jquery.min.js"></script>
     <script src="/static/api.js"></script>
+    <link href="/static/css/bootstrap.min.css" rel="stylesheet">
+    <link href="/static/local.css" rel="stylesheet">
 </head>
 <body>
-<h1>API</h1>
+<h1>API-ROOT</h1>
 <h3>阁下来自[{{ addr }}]</h3>
-<h3>浏览器信息: [{{ HTTP_USER_AGENT }}]</h3>
+<h5>浏览器信息: [{{ HTTP_USER_AGENT }}]</h5>
 选项个数: {{ apis|length }}<br>
 
-<div>
+<div id="id_form">
     <form role="form" action="/api/r/" method="post">
         {% csrf_token %}
         <div class="form-group">
