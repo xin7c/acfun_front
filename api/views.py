@@ -1,8 +1,10 @@
-#coding:utf-8
+# coding:utf-8
 from django.shortcuts import render
 from django.http import HttpResponse
 from .models import API_VERSION
 from django.forms.models import model_to_dict
+
+
 # from django.core import serializers
 # import json
 
@@ -30,7 +32,7 @@ def api(req):
 def api_r(req):
     if req.method == "POST":
         choice_api = req.POST["choice_api"]
-        print API_VERSION.objects.all()
+        # print API_VERSION.objects.all()
         r_api_version = API_VERSION.objects.get(api_version__exact="1.0.2")
 
         # 第一种方法: serializers + json
@@ -44,9 +46,8 @@ def api_r(req):
             return HttpResponse("[NotMatch]" + choice_api)
 
 
-
 def login(req):
-    return HttpResponse("Login")
+    return render(req, "api_login.html", context={})
 
 
 def logout(req):
