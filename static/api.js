@@ -3,6 +3,7 @@
  * @author: xuchu(xuchu@acfun.tv) on 17/3/13.
  */
 $(document).ready(function(){
+    $("#times").html("TIME: " + new Date().toString ());
     var submit_info = $("select option:selected").text();
     $("#id_span_selected").append(submit_info);
     console.log(submit_info);
@@ -17,10 +18,19 @@ $(document).ready(function(){
     var id_addr = $("#id_addr");
     id_addr.hover(
         function(){
-            $(this).css("background-color","#66ffcc")
+            $(this).css("background-color","#66ffcc");
         },
         function(){
             $(this).css("background-color","white");
         });
 
+    function showTime(){
+        var today = new Date();
+        $("#times").html("TIME: " + today.toString ());
+    }
+    var times = setInterval(showTime, 1000);
+
+    $("#stopTime").click(function(){
+       clearInterval(times);
+    });
 });

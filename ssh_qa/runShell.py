@@ -34,6 +34,7 @@ def ssh_qa_server(shell_path, shell_name):
     except Exception as e:
         return "ssh失败:%s" % e
 
+
 def ssh_qa_printLogs(shell_path, shell_name):
     ssh = paramiko.SSHClient()
     ssh.set_missing_host_key_policy(paramiko.AutoAddPolicy())
@@ -49,6 +50,8 @@ def ssh_qa_printLogs(shell_path, shell_name):
         return results
     except Exception as e:
         return "ssh失败:%s" % e
+
+
 # Go
 if __name__ == '__main__':
     # ssh_qa_server(command='sh /root/deploy/front/node-source/acfun-cms-app.master.sh')
