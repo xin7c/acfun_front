@@ -3,8 +3,33 @@
 <head>
     <meta charset="UTF-8">
     <title>ajs_index</title>
+    <script src="http://cdn.static.runoob.com/libs/angular.js/1.4.6/angular.min.js"></script>
 </head>
 <body>
-ajs_index
+{#{% verbatim %}#}
+{#<div ng-app="" ng-init="firstName='xuchu'">#}
+{#    <p>姓名为 <span ng-bind="firstName"></span></p>#}
+{#    <input type="text" ng-model="name">#}
+{#    <h1>Hello {{name}}</h1>#}
+{#    <p>我的第一个表达式： {{ 5 + 5 }}</p>#}
+{#</div>#}
+{#{% endverbatim %}#}
+
+<div ng-app="xcApp" ng-init="firstName='xuchu'">
+    <p>姓名: <span ng-bind="firstName"></span></p>
+    <input type="text" ng-model="name">
+    <h1>Hello [[name]]</h1>
+    <p>我的第一个表达式： [[ 5 + 5 ]]</p>
+    <p>我的第二个表达式： [[ 22 + 22 ]]</p>
+</div>
+
+
+<script>
+    var app = angular.module('xcApp', []);
+    app.config(function($interpolateProvider) {
+        $interpolateProvider.startSymbol('[[');
+        $interpolateProvider.endSymbol(']]');
+    });
+</script>
 </body>
 </html>
