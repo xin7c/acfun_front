@@ -18,6 +18,7 @@ from django.contrib import admin
 from ssh_qa.views import *
 from api.views import *
 from AngularJS.views import *
+from vueJS.views import *
 
 urlpatterns = [
     url(r'^admin/', admin.site.urls),
@@ -32,5 +33,6 @@ urlpatterns = [
     url(r'^api/login/$', login, name="login"),
     url(r'^api/logout/$', logout, name="logout"),
     url(r'^ajs_index/$', ajs_index, name="ajs_index"),
+    url(r'^vueJS_index/$', vueJS_index, name="vueJS_index"),
 
     ]

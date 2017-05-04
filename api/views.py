@@ -25,7 +25,7 @@ def api(req):
         response = render(req, 'api.html', context=context)
         response["hd"] = "1024"
         response.set_cookie(key="cookie_api", value="2017")
-        # print req.META
+        print req.META
         return response
 
 

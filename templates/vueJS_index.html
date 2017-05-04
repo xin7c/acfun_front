@@ -1,0 +1,90 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <link rel="stylesheet" href="/static/css/bootstrap.css">
+    <script src="/static/jquery.min.js"></script>
+    <script src="/static/js/bootstrap.js"></script>
+    <script src="/static/vue.js"></script>
+    <script src="/static/vue-resource.js"></script>
+
+    <script>
+        window.onload = function () {
+            var vm = new Vue({
+                delimiters: ['[[', ']]'],//解决模板标签冲突
+                el: '#box',
+                data: {
+                    msg: '生亦何欢',
+                    spanID: 'spanID',
+                    divSwitch: "死亦何惧"
+                },
+                created: function () {
+                    // 这是一个钩子
+                    console.log("该实例创建于: " + new Date().toString());
+                },
+                methods: {
+                    btnReload: function () {
+                        location.reload();
+                    },
+                    ajaxJQ: function () {
+                        $.ajax({
+                            url: "http://0.0.0.0:8888/api/logout/",
+                            type: "GET",
+                            dataType: "html", //指定服务器返回的数据类型
+                            success: function (data) {
+                            var result = JSON.stringify(data); //json对象转成字符串
+                            console.log(data);
+                            }
+                        });
+                    },
+
+                    getAjax: function (){
+                        this.$http.jsonp('https://sp0.baidu.com/5a1Fazu8AA54nxGko9WTAnF6hhy/su',{
+                            //这里是options参数
+                            params:{wd:this.divSwitch},
+                            jsonp:'cb'
+                        },{
+{#                            emulateJSON:true//get才生效#}
+                        }).then(function(res){
+                            //成功
+                            console.log(res.data.q + ":" + res.data.s);
+                        },function(res){
+                            //失败
+                        });
+                    }
+                }
+            })
+        }
+    </script>
+{#    <script>Vue.config.delimiters = ["[[", "]]"];</script>#}
+    <title>xuchu</title>
+</head>
+
+<body>
+    <div id="box" class="container">
+        <h1>[[ msg ]]</h1>
+        <input type="text" v-model="msg">
+        <hr>
+        <input type="button" value="Push" class="btn btn-danger" @click="btnReload">
+        <input type="button" value="JQ" class="btn btn-info" @click="ajaxJQ">
+        <hr>
+        <span :id="spanID" class="well well-sm">spanID</span>
+        <hr>
+        <input type="text" v-model="divSwitch">
+        {% verbatim %}
+        {% endverbatim %}
+        <div v-if="divSwitch === '0'">
+            你输入的是 [[divSwitch]] 对吗
+        </div>
+        <div v-else-if="divSwitch === '1'">
+            你输入的是 [[divSwitch]] 对吗
+        </div>
+        <div v-else>
+            Num not 0/1!!!<br>
+            你输入的是 [[divSwitch]] 对吗
+        </div>
+        <input type="button" value="vue-resource-get" class="btn btn-success" @click="getAjax">
+
+    </div>
+</body>
+</html>

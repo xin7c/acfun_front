@@ -40,6 +40,7 @@ INSTALLED_APPS = [
     'ssh_qa',
     'api',
     'AngularJS',
+    'vueJS',
 ]
 
 MIDDLEWARE = [
