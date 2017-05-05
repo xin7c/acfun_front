@@ -10,13 +10,18 @@
 
     <script>
         window.onload = function () {
+            // 注册
+            Vue.component('my-component', {
+                template: '<div>A custom component!</div>'
+            })
             var vm = new Vue({
                 delimiters: ['[[', ']]'],//解决模板标签冲突
                 el: '#box',
                 data: {
                     msg: '生亦何欢',
                     spanID: 'spanID',
-                    divSwitch: "死亦何惧"
+                    divSwitch: "死亦何惧",
+                    showPrintLog: ""
                 },
                 created: function () {
                     // 这是一个钩子
@@ -53,7 +58,7 @@
                         });
                     },
                     printLog: function(event){
-                        console.log("Enter" + " " + event.target.tagName)
+                        console.log("Enter" + ":" + event.target.tagName + ":" + this.showPrintLog)
                     }
                 }
             })
@@ -88,8 +93,11 @@
         </div>
         <input type="button" value="vue-resource-get" class="btn btn-success" @click="getAjax">
         <hr>
-        <input type="text" @keyup.enter="printLog" placeholder="按回车有惊喜">
+        <input type="text" @keyup.enter="printLog" placeholder="按回车有惊喜" v-model.trim="showPrintLog" class="input-sm">
+        <br>
+        [[showPrintLog]]
         <hr>
+        <my-component></my-component>
     </div>
 </body>
 </html>
