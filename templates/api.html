@@ -21,7 +21,7 @@
             <select class="form-control" name="choice_api" id="id_select">
                 {% for api in apis_list %}
                     {% if api  == last_version %}
-                    <option value={{ api }} selected="selected">{{ api }}</option>
+                        <option value={{ api }} selected="selected">{{ api }}</option>
                     {% else %}
                         <option value={{ api }}>{{ api }}</option>
                     {% endif %}

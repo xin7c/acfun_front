@@ -51,6 +51,9 @@
                         },function(res){
                             //失败
                         });
+                    },
+                    printLog: function(event){
+                        console.log("Enter" + " " + event.target.tagName)
                     }
                 }
             })
@@ -68,23 +71,25 @@
         <input type="button" value="Push" class="btn btn-danger" @click="btnReload">
         <input type="button" value="JQ" class="btn btn-info" @click="ajaxJQ">
         <hr>
-        <span :id="spanID" class="well well-sm">spanID</span>
+        <span :id="spanID" class="well well-sm">被强行绑定了id的spanID</span>
         <hr>
         <input type="text" v-model="divSwitch">
         {% verbatim %}
         {% endverbatim %}
         <div v-if="divSwitch === '0'">
-            你输入的是 [[divSwitch]] 对吗
+            你的输入: [[divSwitch]]
         </div>
         <div v-else-if="divSwitch === '1'">
-            你输入的是 [[divSwitch]] 对吗
+            你的输入: [[divSwitch]]
         </div>
         <div v-else>
             Num not 0/1!!!<br>
-            你输入的是 [[divSwitch]] 对吗
+            你的输入: [[divSwitch]]
         </div>
         <input type="button" value="vue-resource-get" class="btn btn-success" @click="getAjax">
-
+        <hr>
+        <input type="text" @keyup.enter="printLog" placeholder="按回车有惊喜">
+        <hr>
     </div>
 </body>
 </html>
