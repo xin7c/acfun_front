@@ -1,6 +1,6 @@
 # coding:utf-8
 from django.shortcuts import render
-from django.http import HttpResponse
+from django.http import HttpResponse, JsonResponse
 from .models import API_VERSION
 from django.forms.models import model_to_dict
 
@@ -52,3 +52,10 @@ def login(req):
 
 def logout(req):
     return HttpResponse("Logout")
+
+def get_status(req):
+    """尝试使用JsonResponse返回数据"""
+    print req.GET.get('a')
+    if req.GET.get('a') != None:
+        return JsonResponse({'status': 10086, 'msg': '你要干啥?'})
+    return JsonResponse({'status': 2001, 'msg': '你只是get成功了...'})

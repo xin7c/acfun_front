@@ -32,6 +32,7 @@ urlpatterns = [
     url(r'^api/r/$', api_r, name="api_r"),
     url(r'^api/login/$', login, name="login"),
     url(r'^api/logout/$', logout, name="logout"),
+    url(r'^api/gs/$', get_status, name="get_status"),
     url(r'^ajs_index/$', ajs_index, name="ajs_index"),
     url(r'^vueJS_index/$', vueJS_index, name="vueJS_index"),
 
